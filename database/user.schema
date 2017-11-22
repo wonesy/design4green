@@ -8,6 +8,6 @@ CREATE TABLE already_seen (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     dentist_id INT NOT NULL,
-    FOREIGN KEY fk_user(user_id)
-    FOREIGN KEY fk_dentist(dentist_id)
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (dentist_id) REFERENCES dentists(id)
 );
