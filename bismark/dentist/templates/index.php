@@ -156,7 +156,7 @@
     	});
 </SCRIPT> 
 
-<div class="col-md-12">&nbsp;</div>
+<!--<div class="col-md-12">&nbsp;</div>
         <DIV CLASS="col-sm-12"> 
             <TABLE CLASS="table table-striped table-hover" ID="resultTable">
                 <THEAD>
@@ -168,7 +168,7 @@
                 <TBODY>
                 </TBODY>
             </TABLE>
-</div>
+</div>-->
 
 </BODY>
 </HTML>
