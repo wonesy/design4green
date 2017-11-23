@@ -32,7 +32,7 @@
          REL="stylesheet" TYPE="text/css">
 
 <!-- Custom styles for this template -->
-   <LINK HREF="static/css/landing-page.css" REL="stylesheet">
+   <LINK HREF="static/css/landing-page.min.css" REL="stylesheet">
    <LINK HREF="static/css/dropdown.css" REL="stylesheet">
 
 </HEAD>
