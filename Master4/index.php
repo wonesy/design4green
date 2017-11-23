@@ -31,6 +31,7 @@
 
 <!-- Custom styles for this template -->
    <LINK HREF="css/landing-page.min.css" REL="stylesheet">
+   <LINK HREF="css/dropdown.css" REL="stylesheet">
 
 </HEAD>
 <BODY>
@@ -60,18 +61,46 @@
             <P STYLE="font-size: 24px;">No Worries! Find One Now</P> 
          </DIV>
       </DIV>
+
       <DIV CLASS="col-md-10 col-lg-8 col-xl-7 mx-auto"> 
          <FORM CLASS="form-horizontal" METHOD="get" ROLE="form">
          <DIV CLASS="form-row"> 
-            <DIV CLASS="col-12 col-md-9 mb-2 mb-md-0"> 
-               <INPUT CLASS="ng-pristine ng-valid ng-touched form-control"
-                      ID="searchWord" NAME="searchWord"
-                      PLACEHOLDER="Please enter your search word"
-                      TYPE="text"> 
-            </DIV>
-            <DIV CLASS="col-12 col-md-3"> 
-               <BUTTON CLASS="btn btn-md btn-primary" TYPE="submit">Search
-               for Dentist</BUTTON> 
+            
+            <div class="col-12 col-md-3 mb-2 mb-md-0">
+                <div class="form-group">
+                  <select class="form-control" id="sel1">
+                    <option>Select City</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mb-2 mb-md-0">
+                <div class="form-group">
+                  <!--<label for="sel1">Specialty</label>-->
+                  <select class="form-control" id="sel2">
+                   <option>Select Specialty</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                  </select>
+                </div>
+            </div>
+            <DIV CLASS="col-12 col-md-6 mb-2 mb-md-0"> 
+            <div class="form-group">
+    					<!--<label class="col-sm-2 control-label" for="name">Search for</label>-->
+    					<div class="input-group">
+    						<input id="searchWord" name="searchWord" type="text" class="form-control" placeholder="Please enter your search word" />
+    						<span class="input-group-btn">
+    								<button type="button" class="btn btn-primary btnSearch">
+    									<span class="glyphicon glyphicon-search">Search</span>
+    								</button>
+    						</span>
+    					</div>
+    				</div>
             </DIV>
          </DIV>
          </FORM>
@@ -97,9 +126,8 @@
 
 <!-- JQuery (necessary for Bootstrap's JavaScript plugins) -->
 <SCRIPT SRC="js/jquery-1.10.2.js"></SCRIPT> 
+<script src="js/bootstrap.min.js"></script>
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<SCRIPT SRC="js/bootstrap.min.js"></SCRIPT> 
 <SCRIPT TYPE="text/javascript">
 
         // Let us make sure that the code is working after the hole site is loaded.
