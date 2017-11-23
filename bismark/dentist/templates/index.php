@@ -101,23 +101,9 @@
     						</span>
     					</div>
     				</div>
+                </DIV>
             </DIV>
-         </DIV>
          </FORM>
-      </DIV>
-      <div class="col-md-12">&nbsp;</div>
-      <DIV CLASS="col-sm-12"> 
-         <TABLE CLASS="table table-striped table-hover" ID="resultTable">
-            <THEAD>
-            <TH>Id</TH> 
-            <TH>Name</TH> 
-            <TH>Email</TH> 
-            <TH>Telephone</TH> 
-            </THEAD>
-            <TBODY>
-            </TBODY>
-      </TABLE>
-      
       </DIV>
    </DIV>
 </DIV>
@@ -169,6 +155,20 @@
             }
     	});
 </SCRIPT> 
+
+<div class="col-md-12">&nbsp;</div>
+        <DIV CLASS="col-sm-12"> 
+            <TABLE CLASS="table table-striped table-hover" ID="resultTable">
+                <THEAD>
+                <TH>Id</TH> 
+                <TH>Name</TH> 
+                <TH>Email</TH> 
+                <TH>Telephone</TH> 
+                </THEAD>
+                <TBODY>
+                </TBODY>
+            </TABLE>
+</div>
 
 </BODY>
 </HTML>
