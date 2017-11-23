@@ -36,7 +36,7 @@
    <LINK HREF="static/css/dropdown.css" REL="stylesheet">
 
 </HEAD>
-<BODY>
+
 
 <!-- Navigation -->
 <NAV CLASS="navbar navbar-light bg-light static-top"> 
@@ -108,6 +108,7 @@
    </DIV>
 </DIV>
 </HEADER> 
+
 <BODY>
 
 <!-- JQuery (necessary for Bootstrap's JavaScript plugins) -->
