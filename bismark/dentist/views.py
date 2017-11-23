@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 def index(request):
     template = loader.get_template('index.php')
-    return render(request, template)
+    return render(request, 'index.php')
 
 def search(request):
     # Search database for parameters in the request
