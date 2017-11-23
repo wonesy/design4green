@@ -13,7 +13,7 @@ class Dentists(models.Model):
     phone = models.CharField(max_length=16)
     image_hash = models.CharField(max_length=128)
     hours = models.CharField(max_length=256)
-    speciality = models.CharField(max_length=100)
+    specialty = models.CharField(max_length=100)
 
 class Users(models.Model):
     email = models.CharField(max_length=100)

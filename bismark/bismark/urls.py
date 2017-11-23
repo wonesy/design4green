@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import dentist
 
 urlpatterns = [
-    #url(r'^/', include('dentist.urls')),
-    url(r'^dentist/', include('dentist.urls')),
-    url(r'^search/', include('dentist.urls')),
+    url(r'^dentist/', include('dentist.urls')), 
+    url(r'^search/', dentist.views.search),
+    url(r'^index/', dentist.views.index),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', dentist.views.index),
 ]

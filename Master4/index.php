@@ -2,6 +2,8 @@
     $tutorialTitle= "Dentists Search Zone"; 
 ?> 
 
+{% load static %}
+
 <!DOCTYPE html>
 <HTML LANG="en"> 
 <HEAD>
@@ -19,19 +21,19 @@
 <!-- This for mobile and desktop devices -->
 <!-- <TITLE>Dentist Search Zone - Find-a-Dentist Now</TITLE>  -->
 <!-- Bootstrap core CSS -->
-   <LINK HREF="vendor/bootstrap/css/bootstrap.min.css" REL="stylesheet">
+   <LINK HREF="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" REL="stylesheet">
 
 <!-- Custom fonts for this template -->
-   <LINK HREF="vendor/font-awesome/css/font-awesome.min.css" REL="stylesheet"
+   <LINK HREF="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" REL="stylesheet"
          TYPE="text/css">
-   <LINK HREF="vendor/simple-line-icons/css/simple-line-icons.css"
+   <LINK HREF="{% static "vendor/simple-line-icons/css/simple-line-icons.css" %}"
          REL="stylesheet" TYPE="text/css">
    <LINK HREF="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
          REL="stylesheet" TYPE="text/css">
 
 <!-- Custom styles for this template -->
-   <LINK HREF="css/landing-page.min.css" REL="stylesheet">
-   <LINK HREF="css/dropdown.css" REL="stylesheet">
+   <LINK HREF="static/css/landing-page.min.css" REL="stylesheet">
+   <LINK HREF="static/css/dropdown.css" REL="stylesheet">
 
 </HEAD>
 <BODY>
@@ -63,29 +65,27 @@
       </DIV>
 
       <DIV CLASS="col-md-10 col-lg-8 col-xl-7 mx-auto"> 
-         <FORM CLASS="form-horizontal" METHOD="get" ROLE="form">
+         <FORM action="search/" CLASS="form-horizontal" METHOD="get" ROLE="form">
          <DIV CLASS="form-row"> 
             
             <div class="col-12 col-md-3 mb-2 mb-md-0">
                 <div class="form-group">
-                  <select class="form-control" id="sel1">
+                  <select class="form-control" id="sel1" name="city">
                     <option>Select City</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    {% for city in cities %}
+                        <option>{{ city }}</option> 
+                    {% endfor %}
                   </select>
                 </div>
             </div>
             <div class="col-12 col-md-3 mb-2 mb-md-0">
                 <div class="form-group">
                   <!--<label for="sel1">Specialty</label>-->
-                  <select class="form-control" id="sel2">
+                  <select class="form-control" id="sel2" name="specialty">
                    <option>Select Specialty</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    {% for spec in specialty %}
+                        <option>{{ spec }}</option> 
+                    {% endfor %}
                   </select>
                 </div>
             </div>
@@ -125,8 +125,8 @@
 <BODY>
 
 <!-- JQuery (necessary for Bootstrap's JavaScript plugins) -->
-<SCRIPT SRC="js/jquery-1.10.2.js"></SCRIPT> 
-<script src="js/bootstrap.min.js"></script>
+<SCRIPT SRC="static/js/jquery-1.10.2.js"></SCRIPT> 
+<script src="static/js/bootstrap.min.js"></script>
 
 <SCRIPT TYPE="text/javascript">
 
