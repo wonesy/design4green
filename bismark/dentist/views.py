@@ -3,6 +3,7 @@ from django.core.cache import cache
 import bcrypt
 import django.core.exceptions
 from django.db.models import Q
+import json
 
 # Create your views here.
 from django.http import HttpResponse
@@ -53,7 +54,7 @@ def search(request):
     # return results in the response
     specialty = request.GET['specialty']
     city = request.GET['city']
-    name = request.GET['name']
+    name = request.GET['searchWord']
     
     if specialty == 'Select Specialty':
         specialty = ''
@@ -72,14 +73,17 @@ def search(request):
     else:
         results = data.filter(Q(last_name__contains=name) | Q(first_name__contains=name))
 
-    
     for r in results:
         print r.first_name
         print r.last_name
         print r.city
         print r.specialty
-    
-    return HttpResponse("hi")
+
+    context = {
+        'result': results,
+    }
+   
+    return render(request, 'foundme.php', context)
 
 def createAccount(request):
     email = request.GET['email'].encode('utf-8')
@@ -113,6 +117,3 @@ def authenticate(request):
         print 'failure'
    
     return HttpResponse('Authentication complete')
-
-def results(request):
-    pass
