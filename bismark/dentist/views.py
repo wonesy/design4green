@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 
-def index(request):
+def fetchCache():
     try:
         data = cache.get('dentists')
     except cache.InvalidCacheBackendError:
@@ -39,6 +39,12 @@ def index(request):
         cities = [val['city'] for val in data.values('city').distinct().order_by('city')]
         cache.set('cities', cities)
 
+    return data
+
+def index(request):
+
+    data = fetchCache()
+
     s = cache.get('specialties')
     c = cache.get('cities')
 
@@ -62,10 +68,9 @@ def search(request):
     if city == 'Select City':
         city = ''
     
-    try:
-        data = cache.get('dentists')
-    except cache.InvalidCacheBackendError:
-        print "Cache doesn't exist, caching now"
+    data = fetchCache()
+    s = cache.get('specialties')
+    c = cache.get('cities')
 
     tmp = data.filter(city__contains=city, specialty__contains=specialty)
     if tmp != None:
@@ -81,6 +86,8 @@ def search(request):
 
     context = {
         'result': results,
+        'specialty': s,
+        'cities': c
     }
    
     return render(request, 'foundme.php', context)

@@ -28,14 +28,6 @@
 <!-- Minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-
-<!-- Navigation -->
-<NAV CLASS="navbar navbar-light bg-light static-top"> 
-    <DIV CLASS="container"> 
-       <H1><A CLASS="navbar-brand" HREF="index.php">DENTIST SEARCH ZONE</A></H1> 
-    </DIV>
-</NAV> 
-
 <!--DATABASE CONNECTION STARTS HERE>-->
 
 <!-- Masthead -->
@@ -47,26 +39,29 @@
           <DIV CLASS="col-xl-9 mx-auto"> 
                  <DIV CLASS="home--carousel__item__description"> 
                     <H1>Your search result(s)</H1>
-                    <P STYLE="font-size: 24px;">Total Saerch result</P> 
                  </DIV>
           </DIV>
 
             <DIV CLASS="col-md-12 row"> 
-                 <FORM action="foundme.php" METHOD="POST">
+                 <FORM action="search" METHOD="get">
                     <!--<DIV CLASS="form-row">-->  
                          <DIV class="col-md-3"> 
                             <div class="form-group">
-                               <select class="form-control col-md-12" id="city1" name="city">
+                               <select class="form-control col-md-12" id="city" name="city">
                                    <option>Select City</option>
-                                        <option>1</option> 
+                                    {% for city in cities %}
+                                        <option>{{ city }}</option>
+                                    {% endfor %}
                               </select>
                             </div>
                         </DIV>
                          <DIV class="col-md-3 "> 
                             <div class="form-group">
-                                <select class="form-control " id="speciality1" name="speciality">
-                               <option>Select Specialty</option>
-                                    <option>1</option> 
+                                <select class="form-control " id="specialty" name="specialty">
+                                    <option>Select Specialty</option>
+                                    {% for spec in specialty %}
+                                        <option>{{ spec }}</option> 
+                                    {% endfor %}
                               </select>
                             </div>
                         </DIV>
@@ -75,7 +70,7 @@
                                 <div class="input-group">
                                     <input id="searchWord" name="searchWord" type="text" class="form-control" placeholder="Please enter your search word" />
                                     <span class="input-group-btn">
-                                            <button type="button" class="btn btn-primary btnSearch">
+                                            <button type="submit" class="btn btn-primary btnSearch">
                                                 <span class="glyphicon glyphicon-search">&nbsp;Search</span>
                                             </button>
                                     </span>
