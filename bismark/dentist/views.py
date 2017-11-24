@@ -2,6 +2,7 @@ from models import *
 from django.core.cache import cache
 import bcrypt
 import django.core.exceptions
+from django.db.models import Q
 
 # Create your views here.
 from django.http import HttpResponse
@@ -41,34 +42,44 @@ def index(request):
     c = cache.get('cities')
 
     context = {
-            'specialty': s,
-            'cities': c
+        'specialty': s,
+        'cities': c
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'index.php', context)
 
 def search(request):
     # Search database for parameters in the request
     # return results in the response
     specialty = request.GET['specialty']
     city = request.GET['city']
+    name = request.GET['name']
     
     if specialty == 'Select Specialty':
         specialty = ''
     
     if city == 'Select City':
         city = ''
-    print specialty
-    print city
+    
     try:
         data = cache.get('dentists')
     except cache.InvalidCacheBackendError:
         print "Cache doesn't exist, caching now"
-    results = data.filter(city__contains=city, specialty__contains=specialty)
+
+    tmp = data.filter(city__contains=city, specialty__contains=specialty)
+    if tmp != None:
+        results = tmp.filter(Q(last_name__contains=name) | Q(first_name__contains=name))
+    else:
+        results = data.filter(Q(last_name__contains=name) | Q(first_name__contains=name))
+
     
-    for r in results: 
+    for r in results:
+        print r.first_name
         print r.last_name
-    return HttpResponse(city)
+        print r.city
+        print r.specialty
+    
+    return HttpResponse("hi")
 
 def createAccount(request):
     email = request.GET['email'].encode('utf-8')

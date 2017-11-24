@@ -70,7 +70,7 @@
             
             <div class="col-12 col-md-3 mb-2 mb-md-0">
                 <div class="form-group">
-                  <select class="form-control" id="sel1" name="city">
+                  <select class="form-control" id="city" name="city">
                     <option>Select City</option>
                     {% for city in cities %}
                         <option>{{ city }}</option> 
@@ -81,7 +81,7 @@
             <div class="col-12 col-md-3 mb-2 mb-md-0">
                 <div class="form-group">
                   <!--<label for="sel1">Specialty</label>-->
-                  <select class="form-control" id="sel2" name="specialty">
+                  <select class="form-control" id="specialty" name="specialty">
                    <option>Select Specialty</option>
                     {% for spec in specialty %}
                         <option>{{ spec }}</option> 
@@ -95,7 +95,7 @@
     					<div class="input-group">
     						<input id="searchWord" name="searchWord" type="text" class="form-control" placeholder="Please enter your search word" />
     						<span class="input-group-btn">
-    								<button type="submit" class="btn btn-primary btnSearch">
+    								<button type="button" class="btn btn-primary btnSearch">
     									<span class="glyphicon glyphicon-search">Search</span>
     								</button>
     						</span>
@@ -140,7 +140,9 @@
             function makeAjaxRequest() {
                 $.ajax({
                     url: 'search', // This is the file where all the stuff with the database will happen.
-                    data: {name: $('input#searchWord').val()},
+                        data: {name: $('input#searchWord').val(),
+                               specialty: $('select#specialty').val(),
+                               city: $('select#city').val()},
                     /*
                         A Javascript Object with the information. You can also do it like a query string like this:
 
