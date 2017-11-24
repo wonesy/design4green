@@ -1,5 +1,8 @@
 from models import *
 from django.core.cache import cache
+import bcrypt
+import django.core.exceptions
+from django.db.models import Q
 
 # Create your views here.
 from django.http import HttpResponse
@@ -19,7 +22,7 @@ def index(request):
     try:
         specialties = cache.get('specialties')
     except cache.invalidCachebackendError:
-        print "Could not find specialies"
+        print "Could not find specialties"
 
     if specialties == None:
         specialties = [val['specialty'].strip('\r') for val in data.values('specialty').distinct().order_by('specialty')]
@@ -39,8 +42,8 @@ def index(request):
     c = cache.get('cities')
 
     context = {
-            'specialty': s,
-            'cities': c
+        'specialty': s,
+        'cities': c
     }
 
     return render(request, 'index.php', context)
@@ -48,17 +51,68 @@ def index(request):
 def search(request):
     # Search database for parameters in the request
     # return results in the response
-    last_name  = request.GET['lastname']
-    first_name = request.GET['firstname']
+    specialty = request.GET['specialty']
+    city = request.GET['city']
+    name = request.GET['name']
+    
+    if specialty == 'Select Specialty':
+        specialty = ''
+    
+    if city == 'Select City':
+        city = ''
+    
+    try:
+        data = cache.get('dentists')
+    except cache.InvalidCacheBackendError:
+        print "Cache doesn't exist, caching now"
 
-    objs = Dentists.objects.filter(last_name__contains=last_name, first_name__contains=first_name)
-    for o in objs:
-        print o.email
-        print o.last_name
-        print o.first_name
-        print o.city
-        print o.specialty
-    return HttpResponse(o.email  + o.last_name + o.first_name + o.city + o.specialty)
+    tmp = data.filter(city__contains=city, specialty__contains=specialty)
+    if tmp != None:
+        results = tmp.filter(Q(last_name__contains=name) | Q(first_name__contains=name))
+    else:
+        results = data.filter(Q(last_name__contains=name) | Q(first_name__contains=name))
+
+    
+    for r in results:
+        print r.first_name
+        print r.last_name
+        print r.city
+        print r.specialty
+    
+    return HttpResponse("hi")
+
+def createAccount(request):
+    email = request.GET['email'].encode('utf-8')
+    password = request.GET['password'].encode('utf-8')
+    try:
+        user = Users.objects.get(email__exact=email)
+        print 'cannot create user, user already exists'
+        return HttpResponse('Here is the response')
+    except Users.DoesNotExist:
+        print 'Does not exist'
+
+    hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+    new_user = Users(email=email, password=hashed)
+    new_user.save()
+    return HttpResponse('success')
+
+def authenticate(request):
+    email = request.GET['email'].encode('utf-8')
+    password = request.GET['password'].encode('utf-8')
+ 
+    try:
+        user = Users.objects.get(email__exact=email)
+    except Users.DoesNotExist:
+        print 'Does not exist'
+        return HttpResponse('Here is the response')
+
+    if bcrypt.hashpw(password, user.password.encode('utf-8')) == user.password.encode('utf-8'):
+        print 'success'
+        request.session['user'] = user.email
+    else:
+        print 'failure'
+   
+    return HttpResponse('Authentication complete')
 
 def results(request):
     pass

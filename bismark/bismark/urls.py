@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^dentist/', include('dentist.urls')), 
     url(r'^search/', dentist.views.search),
     url(r'^index/', dentist.views.index),
+    url(r'^create/', dentist.views.createAccount),
+    url(r'^auth/', dentist.views.authenticate),
     url(r'^admin/', admin.site.urls),
     url(r'^$', dentist.views.index),
 ]
