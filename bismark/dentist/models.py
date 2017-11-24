@@ -11,7 +11,7 @@ class Dentists(models.Model):
     address = models.CharField(max_length=128)
     city = models.CharField(max_length=100)
     phone = models.CharField(max_length=16)
-    image_hash = models.CharField(max_length=128)
+    image_hash = models.CharField(max_length=2000)
     hours = models.CharField(max_length=256)
     specialty = models.CharField(max_length=100)
 

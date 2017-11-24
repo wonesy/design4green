@@ -99,7 +99,7 @@
                     
                         <!--NOW WE DISPLAY THE RECORDS HERE IN THE PANEL-BODY-->
                         <div class='col-md-2'>
-                            <!--<img style="width: 130px; height: 170px; border-radius: 5px;" src="data:image/jpeg;base64,'.base64_encode($row['photo']).'"/>-->
+                            <img style="width: 100%; height: 100%; border-radius: 5px;" src="{{ res.image_hash }}"/>
                         </div>
                             
                         <div class="col-md-10">
