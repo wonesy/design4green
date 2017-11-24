@@ -78,12 +78,6 @@ def search(request):
     else:
         results = data.filter(Q(last_name__contains=name) | Q(first_name__contains=name))
 
-    for r in results:
-        print r.first_name
-        print r.last_name
-        print r.city
-        print r.specialty
-
     context = {
         'result': results,
         'specialty': s,

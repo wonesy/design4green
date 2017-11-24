@@ -134,7 +134,6 @@ $(document).ready(function(){
     }
 
     var hourstable = document.getElementById("hour_table{{ forloop.counter }}");
-    console.log(hourstable);
 
     hourstable.innerHTML = '<dd><strong>Mon:</strong> ' + mon + '</dd>';
     hourstable.innerHTML += '<dd><strong>Tue:</strong> ' + tue + '</dd>'; 
