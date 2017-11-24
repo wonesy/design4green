@@ -95,7 +95,7 @@
     					<div class="input-group">
     						<input id="searchWord" name="searchWord" type="text" class="form-control" placeholder="Please enter your search word" />
     						<span class="input-group-btn">
-    								<button type="button" class="btn btn-primary btnSearch">
+    								<button type="submit" class="btn btn-primary btnSearch">
     									<span class="glyphicon glyphicon-search">Search</span>
     								</button>
     						</span>
@@ -139,7 +139,7 @@
   
             function makeAjaxRequest() {
                 $.ajax({
-                    url: 'php/search.php', // This is the file where all the stuff with the database will happen.
+                    url: 'search', // This is the file where all the stuff with the database will happen.
                     data: {name: $('input#searchWord').val()},
                     /*
                         A Javascript Object with the information. You can also do it like a query string like this:
